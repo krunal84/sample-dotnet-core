@@ -1,0 +1,35 @@
+name: Build the application
+on:
+  push:
+    branches:
+      - feature-*
+  pull_request:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v3
+      - name: setup dotnet core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+      - name: list current directory
+        run: |
+          pwd
+          ls -lrt
+          dotnet --version
+          dotnet build
+  notify:
+    runs-on: ubuntu-latest
+    needs: 
+      - build
+    steps:
+      - name: send notification
+        uses: krunal84/github-actions-day2@v1.0
+        with:
+          webhook_uri: ${{ MS_TEAMS_WEBHOOK_URI }}
+          message: "This is from custom actions created"
+    
