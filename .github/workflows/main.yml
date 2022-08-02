@@ -22,8 +22,10 @@ jobs:
           ls -lrt
           dotnet --version
           dotnet build
+          exit 1
   notify:
     runs-on: ubuntu-latest
+    if: always()
     needs: 
       - build
     steps:
