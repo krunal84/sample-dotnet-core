@@ -19,7 +19,6 @@ jobs:
       - name: list current directory
         run: |
           pwd
-          ls -lrt
           dotnet --version
           dotnet build
   notify:
