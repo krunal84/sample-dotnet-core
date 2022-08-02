@@ -27,7 +27,7 @@ jobs:
       - build
     steps:
       - name: send notification
-        uses: krunal84/github-actions-day2@v1.0
+        uses: krunal84/github-actions-day2@v1.1
         with:
           webhook_uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
           message: "This is from custom actions created"
